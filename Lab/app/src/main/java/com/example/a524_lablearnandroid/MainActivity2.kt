@@ -20,8 +20,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.a524_lablearnandroid.ui.theme._524_LabLearnAndroidTheme
+import com.example.a524_lablearnandroid.ui.theme._524_LabLearnAndroidTheme
 
-class MainActivity : ComponentActivity() {
+class MainActivity2 : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -66,7 +67,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
-    _524_LabLearnAndroidTheme {
+    _524_LabLearnAndroidTheme  {
         Greeting("Android")
     }
 }
