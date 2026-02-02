@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme._524_LabLearnAndroid" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme._524LabLearnAndroid"
+        parent="Theme.AppCompat.DayNight.NoActionBar">
+    </style>
+
 </resources>
