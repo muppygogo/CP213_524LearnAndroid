@@ -21,6 +21,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.runtime.*
+
+
 
 
 class MainActivity : ComponentActivity() {
@@ -28,6 +35,11 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
+
+            var str by remember { mutableStateOf(8) }
+            var agi by remember { mutableStateOf(8) }
+            var intt by remember { mutableStateOf(8) }
+
             Column(
                 modifier = Modifier
                     .fillMaxSize()
@@ -71,19 +83,30 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    Column {
-                        Text(text = "Str", fontSize = 32.sp)
-                        Text(text = "8", fontSize = 32.sp)
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        Text("Str", fontSize = 32.sp)
+                        Text(str.toString(), fontSize = 32.sp)
+                        IconButton(onClick = { str++ }) {
+                            Icon(Icons.Default.Add, contentDescription = "Add Str")
+                        }
                     }
 
-                    Column {
-                        Text(text = "Agi", fontSize = 32.sp)
-                        Text(text = "8", fontSize = 32.sp)
+                    // Agi
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        Text("Agi", fontSize = 32.sp)
+                        Text(agi.toString(), fontSize = 32.sp)
+                        IconButton(onClick = { agi++ }) {
+                            Icon(Icons.Default.Add, contentDescription = "Add Agi")
+                        }
                     }
 
-                    Column {
-                        Text(text = "Int", fontSize = 32.sp)
-                        Text(text = "8", fontSize = 32.sp)
+                    // Int
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        Text("Int", fontSize = 32.sp)
+                        Text(intt.toString(), fontSize = 32.sp)
+                        IconButton(onClick = { intt++ }) {
+                            Icon(Icons.Default.Add, contentDescription = "Add Int")
+                        }
                     }
                 }
             }
