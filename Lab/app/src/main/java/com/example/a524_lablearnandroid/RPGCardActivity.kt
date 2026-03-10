@@ -50,7 +50,7 @@ class RPGCardActivity : ComponentActivity() {
     }
     override fun onResume() {
         super.onResume()
-        //load จะอยุ่ตรงนี้เพื่อ
+        //load จะอยุ่ตรงนี้เพื่อ...
         Log.i("Lifecycle", "MainActivity : onResume")
     }
     override fun onPause() {
