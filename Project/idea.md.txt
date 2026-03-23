@@ -1,4 +1,4 @@
-# 🎲 Random App (แอปสุ่ม)
+# Random App (แอปสุ่ม)
 
 ## 1. Concept
 
