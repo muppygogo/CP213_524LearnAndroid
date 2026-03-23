@@ -156,4 +156,6 @@ Technology ที่ใช้ในการพัฒนา
 * เพิ่ม **เสียงประกอบการสุ่ม**
 * เพิ่มการสุ่มแบบ **Spin Wheel**
 
-# Mockup UI
+## Mockup UI
+
+![Random App UI](assets/mockup.png)
