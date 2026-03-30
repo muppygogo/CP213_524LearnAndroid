@@ -1,48 +1,60 @@
 package com.example.randomapp
 
 import android.os.Bundle
+import android.widget.Button
+import android.widget.TextView
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.material3.*
-import androidx.compose.foundation.layout.*
-import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
+import androidx.lifecycle.lifecycleScope
+import androidx.room.Room
+import kotlinx.coroutines.launch
 
 class FoodActivity : ComponentActivity() {
 
+    private lateinit var db: AppDatabase
+    private lateinit var resultText: TextView
+    private lateinit var btnRandom: Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_food)
 
-        setContent {
+        resultText = findViewById(R.id.resultText)
+        btnRandom = findViewById(R.id.btnRandom)
 
-            val foodList = listOf(
-                "Pizza",
-                "Hamburger",
-                "Pad Thai",
-                "Fried Rice",
-                "Ramen"
-            )
+        db = Room.databaseBuilder(
+            applicationContext,
+            AppDatabase::class.java,
+            "random_app_db"
+        )
+            .fallbackToDestructiveMigration()
+            .build()
 
-            var result by remember { mutableStateOf("Press Random") }
+        lifecycleScope.launch {
+            seedFoodIfNeeded()
+        }
 
-            Column(
-                modifier = Modifier.fillMaxSize(),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-
-                Text(text = result)
-
-                Spacer(modifier = Modifier.height(20.dp))
-
-                Button(onClick = {
-                    result = foodList.random()
-                }) {
-                    Text("Random Food")
+        btnRandom.setOnClickListener {
+            lifecycleScope.launch {
+                val foods = db.foodDao().getAllFoods()
+                if (foods.isNotEmpty()) {
+                    resultText.text = foods.random().name
                 }
             }
+        }
+    }
+
+    private suspend fun seedFoodIfNeeded() {
+        if (db.foodDao().getCount() == 0) {
+            db.foodDao().insertAll(
+                listOf(
+                    FoodEntity(name = "Pad Thai"),
+                    FoodEntity(name = "Krapao"),
+                    FoodEntity(name = "Somtam"),
+                    FoodEntity(name = "Pizza"),
+                    FoodEntity(name = "Burger"),
+                    FoodEntity(name = "Sushi")
+                )
+            )
         }
     }
 }
