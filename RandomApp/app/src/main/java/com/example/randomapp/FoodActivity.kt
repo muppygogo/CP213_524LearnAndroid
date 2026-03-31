@@ -38,6 +38,8 @@ class FoodActivity : ComponentActivity() {
                 val foods = db.foodDao().getAllFoods()
                 if (foods.isNotEmpty()) {
                     resultText.text = foods.random().name
+                } else {
+                    resultText.text = "No food found"
                 }
             }
         }

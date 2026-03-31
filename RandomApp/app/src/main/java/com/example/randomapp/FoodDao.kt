@@ -8,6 +8,9 @@ import androidx.room.Query
 interface FoodDao {
 
     @Insert
+    suspend fun insert(food: FoodEntity)
+
+    @Insert
     suspend fun insertAll(foods: List<FoodEntity>)
 
     @Query("SELECT * FROM foods")
