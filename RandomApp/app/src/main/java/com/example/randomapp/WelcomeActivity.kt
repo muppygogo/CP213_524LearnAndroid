@@ -28,6 +28,7 @@ class WelcomeActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         val session = getSharedPreferences("session", MODE_PRIVATE)
+        session.edit().clear().apply()
         if (session.getString("loggedInEmail", null) != null) {
             startActivity(Intent(this, MainActivity::class.java))
             finish()
