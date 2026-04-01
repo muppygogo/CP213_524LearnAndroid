@@ -33,12 +33,15 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.platform.LocalContext
 import coil.compose.rememberAsyncImagePainter
 import androidx.compose.material3.Icon
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        android.util.Log.d("API_KEY_TEST", BuildConfig.LONGDO_API_KEY)
 
         val session = getSharedPreferences("session", MODE_PRIVATE)
         val displayName = session.getString("loggedInName", "Username") ?: "Username"
@@ -66,7 +69,14 @@ class MainActivity : ComponentActivity() {
                             startActivity(Intent(this, NumberActivity::class.java))
                         },
                         onLogout = {
+                            val savedProfileUri = session.getString("profileImageUri", null)
+
                             session.edit().clear().apply()
+
+                            if (savedProfileUri != null) {
+                                session.edit().putString("profileImageUri", savedProfileUri).apply()
+                            }
+
                             startActivity(Intent(this, WelcomeActivity::class.java))
                             finish()
                         }
@@ -90,10 +100,17 @@ fun MainMenuScreen(
     var expanded by remember { mutableStateOf(false) }
     var profileUri by remember { mutableStateOf(initialProfileUri) }
 
+    val context = LocalContext.current
+
     val imagePickerLauncher = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.GetContent()
+        contract = ActivityResultContracts.OpenDocument()
     ) { uri: Uri? ->
         uri?.let {
+            context.contentResolver.takePersistableUriPermission(
+                it,
+                Intent.FLAG_GRANT_READ_URI_PERMISSION
+            )
+
             profileUri = it.toString()
             onSaveProfileUri(it.toString())
         }
@@ -179,7 +196,7 @@ fun MainMenuScreen(
                             },
                             onClick = {
                                 expanded = false
-                                imagePickerLauncher.launch("image/*")
+                                imagePickerLauncher.launch(arrayOf("image/*"))
                             }
                         )
 

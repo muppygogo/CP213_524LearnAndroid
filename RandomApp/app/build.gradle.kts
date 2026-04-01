@@ -10,6 +10,10 @@ android {
     compileSdk = 36
 
     defaultConfig {
+
+        val longdoApiKey = project.findProperty("LONGDO_API_KEY") as String? ?: ""
+        buildConfigField("String", "LONGDO_API_KEY", "\"$longdoApiKey\"")
+
         applicationId = "com.example.randomapp"
         minSdk = 24
         targetSdk = 36
@@ -40,6 +44,7 @@ android {
 
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 
@@ -60,6 +65,14 @@ dependencies {
 
     implementation("androidx.compose.material:material-icons-extended")
     implementation("io.coil-kt:coil-compose:2.7.0")
+    implementation("com.squareup.retrofit2:retrofit:2.11.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.11.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
+
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
+
+    implementation("com.google.android.gms:play-services-location:21.3.0")
+    implementation("com.squareup.retrofit2:retrofit:2.11.0")
 
     implementation("androidx.room:room-runtime:2.6.1")
     implementation("androidx.room:room-ktx:2.6.1")

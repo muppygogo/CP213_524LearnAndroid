@@ -11,8 +11,11 @@ interface NumberDao {
     suspend fun insertAll(numbers: List<NumberEntity>)
 
     @Query("SELECT * FROM numbers")
-    suspend fun getAllNumbers(): List<NumberEntity>
+    suspend fun getAll(): List<NumberEntity>
 
-    @Query("SELECT COUNT(*) FROM numbers")
-    suspend fun getCount(): Int
+    @Query("DELETE FROM numbers")
+    suspend fun deleteAll()
+
+    @Query("DELETE FROM numbers WHERE value = :value")
+    suspend fun deleteByValue(value: Int)
 }
