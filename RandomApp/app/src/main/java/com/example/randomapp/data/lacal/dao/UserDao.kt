@@ -1,14 +1,15 @@
-package com.example.randomapp
+package com.example.randomapp.data.lacal.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.example.randomapp.data.lacal.entity.UserEntity
 
 @Dao
 interface UserDao {
 
-    @Insert(onConflict = OnConflictStrategy.ABORT)
+    @Insert(onConflict = OnConflictStrategy.Companion.ABORT)
     suspend fun insertUser(user: UserEntity)
 
     @Query("SELECT * FROM users WHERE email = :email LIMIT 1")

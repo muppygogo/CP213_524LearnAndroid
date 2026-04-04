@@ -1,4 +1,4 @@
-package com.example.randomapp
+package com.example.randomapp.data.remote
 
 import retrofit2.http.GET
 import retrofit2.http.Query

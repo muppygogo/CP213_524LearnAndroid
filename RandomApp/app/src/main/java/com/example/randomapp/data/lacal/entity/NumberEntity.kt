@@ -1,4 +1,4 @@
-package com.example.randomapp
+package com.example.randomapp.data.lacal.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

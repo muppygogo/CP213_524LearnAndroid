@@ -1,8 +1,9 @@
-package com.example.randomapp
+package com.example.randomapp.data.lacal.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import com.example.randomapp.data.lacal.entity.NumberEntity
 
 @Dao
 interface NumberDao {
