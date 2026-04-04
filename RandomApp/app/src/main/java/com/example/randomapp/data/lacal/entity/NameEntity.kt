@@ -7,8 +7,6 @@ import androidx.room.PrimaryKey
 data class NameEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
-
-    val name: String,
-    val userId: Int = 0,
-    val createdAt: Long = System.currentTimeMillis()
+    val firstName: String,
+    val lastName: String
 )

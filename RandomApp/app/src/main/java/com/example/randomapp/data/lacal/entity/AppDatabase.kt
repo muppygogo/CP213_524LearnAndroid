@@ -1,6 +1,9 @@
-package com.example.randomapp.data.lacal.entity
+package com.example.randomapp.data.local.entity
 
 import android.content.Context
+import androidx.room.Database
+import androidx.room.Room
+import androidx.room.RoomDatabase
 import com.example.randomapp.data.local.dao.FoodCategoryDao
 import com.example.randomapp.data.local.dao.MealDao
 import com.example.randomapp.data.local.dao.NameDao

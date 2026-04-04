@@ -7,9 +7,6 @@ import androidx.room.PrimaryKey
 data class FoodCategory(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
-
-    val categoryName: String,
-    val description: String = "",
-    val imageUrl: String = "",
-    val createdAt: Long = System.currentTimeMillis()
+    val name: String,
+    val description: String? = null
 )

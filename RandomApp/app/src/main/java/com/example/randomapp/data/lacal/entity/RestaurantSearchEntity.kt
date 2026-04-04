@@ -7,11 +7,7 @@ import androidx.room.PrimaryKey
 data class RestaurantSearchEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
-
-    val query: String,  // "อยากกินร้านแถวเยาวราช ราคา 500"
-    val location: String = "",
-    val maxPrice: Double = 0.0,
-    val resultJson: String = "",  // ผลลัพธ์จาก AI
-    val userId: Int = 0,
-    val createdAt: Long = System.currentTimeMillis()
+    val restaurantName: String,
+    val location: String? = null,
+    val searchDate: Long = System.currentTimeMillis()
 )

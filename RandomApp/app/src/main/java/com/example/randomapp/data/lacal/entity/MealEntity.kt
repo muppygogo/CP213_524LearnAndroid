@@ -10,7 +10,7 @@ import androidx.room.PrimaryKey
         ForeignKey(
             entity = FoodCategory::class,
             parentColumns = ["id"],
-            childColumns = ["categoryId"],
+            childColumns = ["category_id"],
             onDelete = ForeignKey.CASCADE
         )
     ]
@@ -18,11 +18,8 @@ import androidx.room.PrimaryKey
 data class MealEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
-
-    val mealName: String,
-    val categoryId: Int,
-    val description: String = "",
-    val imageUrl: String = "",
-    val price: Double = 0.0,
-    val createdAt: Long = System.currentTimeMillis()
+    val name: String,
+    val description: String? = null,
+    val category_id: Int,
+    val price: Double? = null
 )
