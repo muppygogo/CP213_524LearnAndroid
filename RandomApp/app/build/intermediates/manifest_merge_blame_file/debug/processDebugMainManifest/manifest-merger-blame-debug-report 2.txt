@@ -1,0 +1,214 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.randomapp"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="24"
+9        android:targetSdkVersion="36" />
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->/Users/andymuppy/Documents/GitHub/CP213_524LearnAndroid/RandomApp/app/src/main/AndroidManifest.xml:5:5-67
+11-->/Users/andymuppy/Documents/GitHub/CP213_524LearnAndroid/RandomApp/app/src/main/AndroidManifest.xml:5:22-64
+12    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+12-->/Users/andymuppy/Documents/GitHub/CP213_524LearnAndroid/RandomApp/app/src/main/AndroidManifest.xml:6:5-81
+12-->/Users/andymuppy/Documents/GitHub/CP213_524LearnAndroid/RandomApp/app/src/main/AndroidManifest.xml:6:22-78
+13    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+13-->/Users/andymuppy/Documents/GitHub/CP213_524LearnAndroid/RandomApp/app/src/main/AndroidManifest.xml:7:5-79
+13-->/Users/andymuppy/Documents/GitHub/CP213_524LearnAndroid/RandomApp/app/src/main/AndroidManifest.xml:7:22-76
+14
+15    <permission
+15-->[androidx.core:core:1.13.1] /Users/andymuppy/.gradle/caches/8.11.1/transforms/0abf701e90dc679263f211c5e1123544/transformed/core-1.13.1/AndroidManifest.xml:22:5-24:47
+16        android:name="com.example.randomapp.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+16-->[androidx.core:core:1.13.1] /Users/andymuppy/.gradle/caches/8.11.1/transforms/0abf701e90dc679263f211c5e1123544/transformed/core-1.13.1/AndroidManifest.xml:23:9-81
+17        android:protectionLevel="signature" />
+17-->[androidx.core:core:1.13.1] /Users/andymuppy/.gradle/caches/8.11.1/transforms/0abf701e90dc679263f211c5e1123544/transformed/core-1.13.1/AndroidManifest.xml:24:9-44
+18
+19    <uses-permission android:name="com.example.randomapp.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+19-->[androidx.core:core:1.13.1] /Users/andymuppy/.gradle/caches/8.11.1/transforms/0abf701e90dc679263f211c5e1123544/transformed/core-1.13.1/AndroidManifest.xml:26:5-97
+19-->[androidx.core:core:1.13.1] /Users/andymuppy/.gradle/caches/8.11.1/transforms/0abf701e90dc679263f211c5e1123544/transformed/core-1.13.1/AndroidManifest.xml:26:22-94
+20
+21    <application
+21-->/Users/andymuppy/Documents/GitHub/CP213_524LearnAndroid/RandomApp/app/src/main/AndroidManifest.xml:8:5-51:19
+22        android:allowBackup="true"
+22-->/Users/andymuppy/Documents/GitHub/CP213_524LearnAndroid/RandomApp/app/src/main/AndroidManifest.xml:9:9-35
+23        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+23-->[androidx.core:core:1.13.1] /Users/andymuppy/.gradle/caches/8.11.1/transforms/0abf701e90dc679263f211c5e1123544/transformed/core-1.13.1/AndroidManifest.xml:28:18-86
+24        android:dataExtractionRules="@xml/data_extraction_rules"
+24-->/Users/andymuppy/Documents/GitHub/CP213_524LearnAndroid/RandomApp/app/src/main/AndroidManifest.xml:10:9-65
+25        android:debuggable="true"
+26        android:extractNativeLibs="false"
+27        android:fullBackupContent="@xml/backup_rules"
+27-->/Users/andymuppy/Documents/GitHub/CP213_524LearnAndroid/RandomApp/app/src/main/AndroidManifest.xml:11:9-54
+28        android:icon="@mipmap/ic_launcher"
+28-->/Users/andymuppy/Documents/GitHub/CP213_524LearnAndroid/RandomApp/app/src/main/AndroidManifest.xml:12:9-43
+29        android:label="@string/app_name"
+29-->/Users/andymuppy/Documents/GitHub/CP213_524LearnAndroid/RandomApp/app/src/main/AndroidManifest.xml:13:9-41
+30        android:roundIcon="@mipmap/ic_launcher_round"
+30-->/Users/andymuppy/Documents/GitHub/CP213_524LearnAndroid/RandomApp/app/src/main/AndroidManifest.xml:14:9-54
+31        android:supportsRtl="true"
+31-->/Users/andymuppy/Documents/GitHub/CP213_524LearnAndroid/RandomApp/app/src/main/AndroidManifest.xml:15:9-35
+32        android:testOnly="true"
+33        android:theme="@style/Theme.RandomApp" >
+33-->/Users/andymuppy/Documents/GitHub/CP213_524LearnAndroid/RandomApp/app/src/main/AndroidManifest.xml:16:9-47
+34        <activity
+34-->/Users/andymuppy/Documents/GitHub/CP213_524LearnAndroid/RandomApp/app/src/main/AndroidManifest.xml:19:9-26:20
+35            android:name="com.example.randomapp.ui.welcome.WelcomeActivity"
+35-->/Users/andymuppy/Documents/GitHub/CP213_524LearnAndroid/RandomApp/app/src/main/AndroidManifest.xml:20:13-55
+36            android:exported="true" >
+36-->/Users/andymuppy/Documents/GitHub/CP213_524LearnAndroid/RandomApp/app/src/main/AndroidManifest.xml:21:13-36
+37            <intent-filter>
+37-->/Users/andymuppy/Documents/GitHub/CP213_524LearnAndroid/RandomApp/app/src/main/AndroidManifest.xml:22:13-25:29
+38                <action android:name="android.intent.action.MAIN" />
+38-->/Users/andymuppy/Documents/GitHub/CP213_524LearnAndroid/RandomApp/app/src/main/AndroidManifest.xml:23:17-69
+38-->/Users/andymuppy/Documents/GitHub/CP213_524LearnAndroid/RandomApp/app/src/main/AndroidManifest.xml:23:25-66
+39
+40                <category android:name="android.intent.category.LAUNCHER" />
+40-->/Users/andymuppy/Documents/GitHub/CP213_524LearnAndroid/RandomApp/app/src/main/AndroidManifest.xml:24:17-77
+40-->/Users/andymuppy/Documents/GitHub/CP213_524LearnAndroid/RandomApp/app/src/main/AndroidManifest.xml:24:27-74
+41            </intent-filter>
+42        </activity>
+43        <activity
+43-->/Users/andymuppy/Documents/GitHub/CP213_524LearnAndroid/RandomApp/app/src/main/AndroidManifest.xml:28:9-30:40
+44            android:name="com.example.randomapp.ui.auth.LoginActivity"
+44-->/Users/andymuppy/Documents/GitHub/CP213_524LearnAndroid/RandomApp/app/src/main/AndroidManifest.xml:29:13-50
+45            android:exported="false" />
+45-->/Users/andymuppy/Documents/GitHub/CP213_524LearnAndroid/RandomApp/app/src/main/AndroidManifest.xml:30:13-37
+46        <activity
+46-->/Users/andymuppy/Documents/GitHub/CP213_524LearnAndroid/RandomApp/app/src/main/AndroidManifest.xml:32:9-34:40
+47            android:name="com.example.randomapp.ui.auth.SignupActivity"
+47-->/Users/andymuppy/Documents/GitHub/CP213_524LearnAndroid/RandomApp/app/src/main/AndroidManifest.xml:33:13-51
+48            android:exported="false" />
+48-->/Users/andymuppy/Documents/GitHub/CP213_524LearnAndroid/RandomApp/app/src/main/AndroidManifest.xml:34:13-37
+49        <activity
+49-->/Users/andymuppy/Documents/GitHub/CP213_524LearnAndroid/RandomApp/app/src/main/AndroidManifest.xml:36:9-38:40
+50            android:name="com.example.randomapp.ui.main.MainActivity"
+50-->/Users/andymuppy/Documents/GitHub/CP213_524LearnAndroid/RandomApp/app/src/main/AndroidManifest.xml:37:13-49
+51            android:exported="false" />
+51-->/Users/andymuppy/Documents/GitHub/CP213_524LearnAndroid/RandomApp/app/src/main/AndroidManifest.xml:38:13-37
+52        <activity
+52-->/Users/andymuppy/Documents/GitHub/CP213_524LearnAndroid/RandomApp/app/src/main/AndroidManifest.xml:40:9-42:40
+53            android:name="com.example.randomapp.ui.number.NumberActivity"
+53-->/Users/andymuppy/Documents/GitHub/CP213_524LearnAndroid/RandomApp/app/src/main/AndroidManifest.xml:41:13-53
+54            android:exported="false" />
+54-->/Users/andymuppy/Documents/GitHub/CP213_524LearnAndroid/RandomApp/app/src/main/AndroidManifest.xml:42:13-37
+55        <activity
+55-->/Users/andymuppy/Documents/GitHub/CP213_524LearnAndroid/RandomApp/app/src/main/AndroidManifest.xml:44:9-46:40
+56            android:name="com.example.randomapp.ui.food.FoodActivity"
+56-->/Users/andymuppy/Documents/GitHub/CP213_524LearnAndroid/RandomApp/app/src/main/AndroidManifest.xml:45:13-49
+57            android:exported="false" />
+57-->/Users/andymuppy/Documents/GitHub/CP213_524LearnAndroid/RandomApp/app/src/main/AndroidManifest.xml:46:13-37
+58        <activity
+58-->/Users/andymuppy/Documents/GitHub/CP213_524LearnAndroid/RandomApp/app/src/main/AndroidManifest.xml:48:9-50:40
+59            android:name="com.example.randomapp.ui.name.NameActivity"
+59-->/Users/andymuppy/Documents/GitHub/CP213_524LearnAndroid/RandomApp/app/src/main/AndroidManifest.xml:49:13-49
+60            android:exported="false" />
+60-->/Users/andymuppy/Documents/GitHub/CP213_524LearnAndroid/RandomApp/app/src/main/AndroidManifest.xml:50:13-37
+61
+62        <service
+62-->[androidx.room:room-runtime:2.6.1] /Users/andymuppy/.gradle/caches/8.11.1/transforms/19af42b72ad789eab40d2bf255cc1eab/transformed/room-runtime-2.6.1/AndroidManifest.xml:24:9-28:63
+63            android:name="androidx.room.MultiInstanceInvalidationService"
+63-->[androidx.room:room-runtime:2.6.1] /Users/andymuppy/.gradle/caches/8.11.1/transforms/19af42b72ad789eab40d2bf255cc1eab/transformed/room-runtime-2.6.1/AndroidManifest.xml:25:13-74
+64            android:directBootAware="true"
+64-->[androidx.room:room-runtime:2.6.1] /Users/andymuppy/.gradle/caches/8.11.1/transforms/19af42b72ad789eab40d2bf255cc1eab/transformed/room-runtime-2.6.1/AndroidManifest.xml:26:13-43
+65            android:exported="false" />
+65-->[androidx.room:room-runtime:2.6.1] /Users/andymuppy/.gradle/caches/8.11.1/transforms/19af42b72ad789eab40d2bf255cc1eab/transformed/room-runtime-2.6.1/AndroidManifest.xml:27:13-37
+66
+67        <activity
+67-->[com.google.android.gms:play-services-base:18.5.0] /Users/andymuppy/.gradle/caches/8.11.1/transforms/76cfba2f3c816482d8e8331f6dfe0744/transformed/play-services-base-18.5.0/AndroidManifest.xml:5:9-173
+68            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+68-->[com.google.android.gms:play-services-base:18.5.0] /Users/andymuppy/.gradle/caches/8.11.1/transforms/76cfba2f3c816482d8e8331f6dfe0744/transformed/play-services-base-18.5.0/AndroidManifest.xml:5:19-85
+69            android:exported="false"
+69-->[com.google.android.gms:play-services-base:18.5.0] /Users/andymuppy/.gradle/caches/8.11.1/transforms/76cfba2f3c816482d8e8331f6dfe0744/transformed/play-services-base-18.5.0/AndroidManifest.xml:5:146-170
+70            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+70-->[com.google.android.gms:play-services-base:18.5.0] /Users/andymuppy/.gradle/caches/8.11.1/transforms/76cfba2f3c816482d8e8331f6dfe0744/transformed/play-services-base-18.5.0/AndroidManifest.xml:5:86-145
+71
+72        <meta-data
+72-->[com.google.android.gms:play-services-basement:18.4.0] /Users/andymuppy/.gradle/caches/8.11.1/transforms/7c4add4112a91869636b80b589c7283c/transformed/play-services-basement-18.4.0/AndroidManifest.xml:6:9-122
+73            android:name="com.google.android.gms.version"
+73-->[com.google.android.gms:play-services-basement:18.4.0] /Users/andymuppy/.gradle/caches/8.11.1/transforms/7c4add4112a91869636b80b589c7283c/transformed/play-services-basement-18.4.0/AndroidManifest.xml:6:20-65
+74            android:value="@integer/google_play_services_version" />
+74-->[com.google.android.gms:play-services-basement:18.4.0] /Users/andymuppy/.gradle/caches/8.11.1/transforms/7c4add4112a91869636b80b589c7283c/transformed/play-services-basement-18.4.0/AndroidManifest.xml:6:66-119
+75
+76        <activity
+76-->[androidx.compose.ui:ui-test-manifest:1.7.0] /Users/andymuppy/.gradle/caches/8.11.1/transforms/ecfc7ce396b2bcefd07b544f14e7f55c/transformed/ui-test-manifest-1.7.0/AndroidManifest.xml:23:9-25:39
+77            android:name="androidx.activity.ComponentActivity"
+77-->[androidx.compose.ui:ui-test-manifest:1.7.0] /Users/andymuppy/.gradle/caches/8.11.1/transforms/ecfc7ce396b2bcefd07b544f14e7f55c/transformed/ui-test-manifest-1.7.0/AndroidManifest.xml:24:13-63
+78            android:exported="true" />
+78-->[androidx.compose.ui:ui-test-manifest:1.7.0] /Users/andymuppy/.gradle/caches/8.11.1/transforms/ecfc7ce396b2bcefd07b544f14e7f55c/transformed/ui-test-manifest-1.7.0/AndroidManifest.xml:25:13-36
+79        <activity
+79-->[androidx.compose.ui:ui-tooling-android:1.7.0] /Users/andymuppy/.gradle/caches/8.11.1/transforms/ceb6b837f2dfc58553899f8fcdab1424/transformed/ui-tooling-release/AndroidManifest.xml:23:9-25:39
+80            android:name="androidx.compose.ui.tooling.PreviewActivity"
+80-->[androidx.compose.ui:ui-tooling-android:1.7.0] /Users/andymuppy/.gradle/caches/8.11.1/transforms/ceb6b837f2dfc58553899f8fcdab1424/transformed/ui-tooling-release/AndroidManifest.xml:24:13-71
+81            android:exported="true" />
+81-->[androidx.compose.ui:ui-tooling-android:1.7.0] /Users/andymuppy/.gradle/caches/8.11.1/transforms/ceb6b837f2dfc58553899f8fcdab1424/transformed/ui-tooling-release/AndroidManifest.xml:25:13-36
+82
+83        <provider
+83-->[androidx.emoji2:emoji2:1.3.0] /Users/andymuppy/.gradle/caches/8.11.1/transforms/4ab978cb5dc7e95d66fc43d44b6ffd2d/transformed/emoji2-1.3.0/AndroidManifest.xml:24:9-32:20
+84            android:name="androidx.startup.InitializationProvider"
+84-->[androidx.emoji2:emoji2:1.3.0] /Users/andymuppy/.gradle/caches/8.11.1/transforms/4ab978cb5dc7e95d66fc43d44b6ffd2d/transformed/emoji2-1.3.0/AndroidManifest.xml:25:13-67
+85            android:authorities="com.example.randomapp.androidx-startup"
+85-->[androidx.emoji2:emoji2:1.3.0] /Users/andymuppy/.gradle/caches/8.11.1/transforms/4ab978cb5dc7e95d66fc43d44b6ffd2d/transformed/emoji2-1.3.0/AndroidManifest.xml:26:13-68
+86            android:exported="false" >
+86-->[androidx.emoji2:emoji2:1.3.0] /Users/andymuppy/.gradle/caches/8.11.1/transforms/4ab978cb5dc7e95d66fc43d44b6ffd2d/transformed/emoji2-1.3.0/AndroidManifest.xml:27:13-37
+87            <meta-data
+87-->[androidx.emoji2:emoji2:1.3.0] /Users/andymuppy/.gradle/caches/8.11.1/transforms/4ab978cb5dc7e95d66fc43d44b6ffd2d/transformed/emoji2-1.3.0/AndroidManifest.xml:29:13-31:52
+88                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+88-->[androidx.emoji2:emoji2:1.3.0] /Users/andymuppy/.gradle/caches/8.11.1/transforms/4ab978cb5dc7e95d66fc43d44b6ffd2d/transformed/emoji2-1.3.0/AndroidManifest.xml:30:17-75
+89                android:value="androidx.startup" />
+89-->[androidx.emoji2:emoji2:1.3.0] /Users/andymuppy/.gradle/caches/8.11.1/transforms/4ab978cb5dc7e95d66fc43d44b6ffd2d/transformed/emoji2-1.3.0/AndroidManifest.xml:31:17-49
+90            <meta-data
+90-->[androidx.lifecycle:lifecycle-process:2.8.7] /Users/andymuppy/.gradle/caches/8.11.1/transforms/d3e33f27be1d5075760c973013d6cdd7/transformed/lifecycle-process-2.8.7/AndroidManifest.xml:29:13-31:52
+91                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+91-->[androidx.lifecycle:lifecycle-process:2.8.7] /Users/andymuppy/.gradle/caches/8.11.1/transforms/d3e33f27be1d5075760c973013d6cdd7/transformed/lifecycle-process-2.8.7/AndroidManifest.xml:30:17-78
+92                android:value="androidx.startup" />
+92-->[androidx.lifecycle:lifecycle-process:2.8.7] /Users/andymuppy/.gradle/caches/8.11.1/transforms/d3e33f27be1d5075760c973013d6cdd7/transformed/lifecycle-process-2.8.7/AndroidManifest.xml:31:17-49
+93            <meta-data
+93-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/andymuppy/.gradle/caches/8.11.1/transforms/e15ab35e5517138e8596160eca0be693/transformed/profileinstaller-1.3.1/AndroidManifest.xml:29:13-31:52
+94                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+94-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/andymuppy/.gradle/caches/8.11.1/transforms/e15ab35e5517138e8596160eca0be693/transformed/profileinstaller-1.3.1/AndroidManifest.xml:30:17-85
+95                android:value="androidx.startup" />
+95-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/andymuppy/.gradle/caches/8.11.1/transforms/e15ab35e5517138e8596160eca0be693/transformed/profileinstaller-1.3.1/AndroidManifest.xml:31:17-49
+96        </provider>
+97
+98        <receiver
+98-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/andymuppy/.gradle/caches/8.11.1/transforms/e15ab35e5517138e8596160eca0be693/transformed/profileinstaller-1.3.1/AndroidManifest.xml:34:9-52:20
+99            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+99-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/andymuppy/.gradle/caches/8.11.1/transforms/e15ab35e5517138e8596160eca0be693/transformed/profileinstaller-1.3.1/AndroidManifest.xml:35:13-76
+100            android:directBootAware="false"
+100-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/andymuppy/.gradle/caches/8.11.1/transforms/e15ab35e5517138e8596160eca0be693/transformed/profileinstaller-1.3.1/AndroidManifest.xml:36:13-44
+101            android:enabled="true"
+101-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/andymuppy/.gradle/caches/8.11.1/transforms/e15ab35e5517138e8596160eca0be693/transformed/profileinstaller-1.3.1/AndroidManifest.xml:37:13-35
+102            android:exported="true"
+102-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/andymuppy/.gradle/caches/8.11.1/transforms/e15ab35e5517138e8596160eca0be693/transformed/profileinstaller-1.3.1/AndroidManifest.xml:38:13-36
+103            android:permission="android.permission.DUMP" >
+103-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/andymuppy/.gradle/caches/8.11.1/transforms/e15ab35e5517138e8596160eca0be693/transformed/profileinstaller-1.3.1/AndroidManifest.xml:39:13-57
+104            <intent-filter>
+104-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/andymuppy/.gradle/caches/8.11.1/transforms/e15ab35e5517138e8596160eca0be693/transformed/profileinstaller-1.3.1/AndroidManifest.xml:40:13-42:29
+105                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+105-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/andymuppy/.gradle/caches/8.11.1/transforms/e15ab35e5517138e8596160eca0be693/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:17-91
+105-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/andymuppy/.gradle/caches/8.11.1/transforms/e15ab35e5517138e8596160eca0be693/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:25-88
+106            </intent-filter>
+107            <intent-filter>
+107-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/andymuppy/.gradle/caches/8.11.1/transforms/e15ab35e5517138e8596160eca0be693/transformed/profileinstaller-1.3.1/AndroidManifest.xml:43:13-45:29
+108                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+108-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/andymuppy/.gradle/caches/8.11.1/transforms/e15ab35e5517138e8596160eca0be693/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:17-85
+108-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/andymuppy/.gradle/caches/8.11.1/transforms/e15ab35e5517138e8596160eca0be693/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:25-82
+109            </intent-filter>
+110            <intent-filter>
+110-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/andymuppy/.gradle/caches/8.11.1/transforms/e15ab35e5517138e8596160eca0be693/transformed/profileinstaller-1.3.1/AndroidManifest.xml:46:13-48:29
+111                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+111-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/andymuppy/.gradle/caches/8.11.1/transforms/e15ab35e5517138e8596160eca0be693/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:17-88
+111-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/andymuppy/.gradle/caches/8.11.1/transforms/e15ab35e5517138e8596160eca0be693/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:25-85
+112            </intent-filter>
+113            <intent-filter>
+113-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/andymuppy/.gradle/caches/8.11.1/transforms/e15ab35e5517138e8596160eca0be693/transformed/profileinstaller-1.3.1/AndroidManifest.xml:49:13-51:29
+114                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+114-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/andymuppy/.gradle/caches/8.11.1/transforms/e15ab35e5517138e8596160eca0be693/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:17-95
+114-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/andymuppy/.gradle/caches/8.11.1/transforms/e15ab35e5517138e8596160eca0be693/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:25-92
+115            </intent-filter>
+116        </receiver>
+117    </application>
+118
+119</manifest>
