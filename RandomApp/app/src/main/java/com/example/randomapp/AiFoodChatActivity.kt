@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -73,8 +74,21 @@ class AiFoodChatActivity : ComponentActivity() {
         addMessage(userMsg, true)
         editMessage.setText("")
 
+        // บับเบิลชั่วคราว
+        val typingIndex = addMessageAndReturnIndex("AI กำลังพิมพ์...", false)
+
+        // หน่วงนิดให้ดูเหมือนกำลังคิด
+        delay(700)
+
         val reply = generateReplyFromDb(userMsg)
-        addMessage(reply, false)
+
+        // แทนที่ข้อความเดิม
+        chatMessages[typingIndex] = ChatMessage(reply, false)
+        chatAdapter.notifyItemChanged(typingIndex)
+
+        recyclerChat.post {
+            recyclerChat.scrollToPosition(chatMessages.lastIndex)
+        }
     }
 
     private fun addMessage(text: String, isUser: Boolean) {
@@ -82,6 +96,16 @@ class AiFoodChatActivity : ComponentActivity() {
         recyclerChat.post {
             recyclerChat.scrollToPosition(chatMessages.lastIndex)
         }
+    }
+
+    private fun addMessageAndReturnIndex(text: String, isUser: Boolean): Int {
+        val message = ChatMessage(text = text, isUser = isUser)
+        chatMessages.add(message)
+        chatAdapter.notifyItemInserted(chatMessages.lastIndex)
+        recyclerChat.post {
+            recyclerChat.scrollToPosition(chatMessages.lastIndex)
+        }
+        return chatMessages.lastIndex
     }
 
     private suspend fun generateReplyFromDb(message: String): String {
