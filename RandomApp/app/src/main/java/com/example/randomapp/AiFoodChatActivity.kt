@@ -1,13 +1,12 @@
 package com.example.randomapp
 
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ScrollView
-import android.widget.TextView
 import androidx.activity.ComponentActivity
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -18,10 +17,12 @@ class AiFoodChatActivity : ComponentActivity() {
     private lateinit var db: AppDatabase
 
     private lateinit var btnBack: Button
-    private lateinit var chatText: TextView
     private lateinit var editMessage: EditText
     private lateinit var btnSend: Button
-    private lateinit var chatScroll: ScrollView
+    private lateinit var recyclerChat: RecyclerView
+
+    private lateinit var chatAdapter: ChatMessageAdapter
+    private val chatMessages = mutableListOf<ChatMessage>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,12 +37,15 @@ class AiFoodChatActivity : ComponentActivity() {
             .build()
 
         btnBack = findViewById(R.id.btnBack)
-        chatText = findViewById(R.id.chatText)
         editMessage = findViewById(R.id.editMessage)
         btnSend = findViewById(R.id.btnSend)
-        chatScroll = findViewById(R.id.chatScroll)
+        recyclerChat = findViewById(R.id.recyclerChat)
 
-        addMessage("🤖: สวัสดี เราช่วยแนะนำอาหารให้ได้นะ ลองพิมพ์มาว่าอยากกินแบบไหน")
+        chatAdapter = ChatMessageAdapter(this, chatMessages)
+        recyclerChat.layoutManager = LinearLayoutManager(this)
+        recyclerChat.adapter = chatAdapter
+
+        addMessage("สวัสดี เราช่วยแนะนำอาหารให้ได้นะ ลองพิมพ์มาว่าอยากกินแบบไหน", false)
 
         btnBack.setOnClickListener {
             finish()
@@ -66,17 +70,17 @@ class AiFoodChatActivity : ComponentActivity() {
 
         if (userMsg.isEmpty()) return
 
-        addMessage("👤: $userMsg")
+        addMessage(userMsg, true)
         editMessage.setText("")
 
         val reply = generateReplyFromDb(userMsg)
-        addMessage("🤖: $reply")
+        addMessage(reply, false)
     }
 
-    private fun addMessage(msg: String) {
-        chatText.append(msg + "\n\n")
-        chatScroll.post {
-            chatScroll.fullScroll(View.FOCUS_DOWN)
+    private fun addMessage(text: String, isUser: Boolean) {
+        chatAdapter.addMessage(ChatMessage(text = text, isUser = isUser))
+        recyclerChat.post {
+            recyclerChat.scrollToPosition(chatMessages.lastIndex)
         }
     }
 
@@ -128,7 +132,6 @@ class AiFoodChatActivity : ComponentActivity() {
                 }
             }
 
-            // ต้องเช็กไม่เผ็ดก่อนเผ็ด
             containsAny(text, listOf("ไม่เผ็ด", "ไม่เอาเผ็ด", "ไม่กินเผ็ด")) -> {
                 when {
                     nonSpicyFoods.isNotEmpty() -> {
