@@ -309,7 +309,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="22dp"
-                        android:text="AI แนะนำ"
+                        android:text="Chat AI"
                         android:textColor="#3B2C35"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -320,7 +320,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:lineSpacingExtra="2dp"
-                        android:text="บอก AI แล้วให้ช่วยหาร้าน"
+                        android:text="คุยกับ AI ให้ช่วยหาเมนูที่ถูกใจ"
                         android:textColor="#6C5863"
                         android:textSize="13sp"
                         android:textStyle="bold" />

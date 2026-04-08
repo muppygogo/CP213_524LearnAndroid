@@ -84,9 +84,19 @@ class FoodActivity : ComponentActivity() {
             .build()
 
         btnBack.setOnClickListener { finish() }
-        cardWheelMode.setOnClickListener { selectWheelMode() }
-        cardAiMode.setOnClickListener { selectAiMode() }
-        btnAddFood.setOnClickListener { addFood() }
+
+        cardWheelMode.setOnClickListener {
+            selectWheelMode()
+        }
+
+        cardAiMode.setOnClickListener {
+            val intent = Intent(this, AiFoodChatActivity::class.java)
+            startActivity(intent)
+        }
+
+        btnAddFood.setOnClickListener {
+            addFood()
+        }
 
         btnSpin.setOnClickListener {
             lifecycleScope.launch {
@@ -356,13 +366,6 @@ class FoodActivity : ComponentActivity() {
         cardWheelMode.alpha = 1f
         cardAiMode.alpha = if (isDarkMode) 0.82f else 0.9f
         resultText.visibility = View.GONE
-    }
-
-    private fun selectAiMode() {
-        cardWheelMode.alpha = if (isDarkMode) 0.82f else 0.9f
-        cardAiMode.alpha = 1f
-        resultText.visibility = View.VISIBLE
-        resultText.text = "AI แนะนำ: ลองเริ่มจากเมนูที่กินง่าย เช่น ข้าวมันไก่"
     }
 
     private suspend fun seedFoodIfNeeded() {
