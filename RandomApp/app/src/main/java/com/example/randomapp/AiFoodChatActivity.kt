@@ -113,20 +113,26 @@ class AiFoodChatActivity : ComponentActivity() {
 
             containsAny(text, listOf("เย็น", "มื้อเย็น")) &&
                     containsAny(text, listOf("ไม่รู้", "กินอะไร", "กินไร")) -> {
-                val choices = pickRandomChoices(lightFoods.ifEmpty { foodNames }, 3)
-                "เย็นนี้ลองเลือกดู:\n- ${choices.joinToString("\n- ")}\nน่าจะอิ่มกำลังดีนะ"
+                buildRecommendationReply(
+                    candidates = lightFoods.ifEmpty { foodNames },
+                    reason = "เพราะน่าจะเหมาะกับมื้อเย็นและไม่หนักเกินไป"
+                )
             }
 
             containsAny(text, listOf("กลางวัน", "มื้อกลางวัน")) -> {
-                val choices = pickRandomChoices(easyFoods.ifEmpty { foodNames }, 3)
-                "มื้อกลางวันลองดูพวกนี้ไหม:\n- ${choices.joinToString("\n- ")}"
+                buildRecommendationReply(
+                    candidates = easyFoods.ifEmpty { foodNames },
+                    reason = "เพราะกินง่ายและเหมาะกับมื้อกลางวัน"
+                )
             }
 
             containsAny(text, listOf("ดึก", "กลางคืน")) -> {
                 val safeLateNightFoods = (lightFoods + healthyFoods).distinct().filterNot { isSpicyFood(it) }
                 if (safeLateNightFoods.isNotEmpty()) {
-                    val choices = pickRandomChoices(safeLateNightFoods, 3)
-                    "ถ้ากินตอนดึก ลองดูพวกนี้ไหม:\n- ${choices.joinToString("\n- ")}"
+                    buildRecommendationReply(
+                        candidates = safeLateNightFoods,
+                        reason = "เพราะเบากว่าเมนูหนัก ๆ และเหมาะกับตอนดึก"
+                    )
                 } else {
                     "ตอนนี้ยังไม่เจอเมนูเบา ๆ สำหรับตอนดึกในรายการเลย"
                 }
@@ -135,16 +141,19 @@ class AiFoodChatActivity : ComponentActivity() {
             containsAny(text, listOf("ไม่เผ็ด", "ไม่เอาเผ็ด", "ไม่กินเผ็ด")) -> {
                 when {
                     nonSpicyFoods.isNotEmpty() -> {
-                        val choices = pickRandomChoices(nonSpicyFoods, 3)
-                        "ถ้าอยากกินไม่เผ็ด ลองเลือกดู:\n- ${choices.joinToString("\n- ")}"
+                        buildRecommendationReply(
+                            candidates = nonSpicyFoods,
+                            reason = "เพราะเป็นเมนูที่ไม่เผ็ดและกินง่าย"
+                        )
                     }
 
                     lightFoods.isNotEmpty() -> {
                         val safeLightFoods = lightFoods.filterNot { isSpicyFood(it) }
-
                         if (safeLightFoods.isNotEmpty()) {
-                            val choices = pickRandomChoices(safeLightFoods, 3)
-                            "ถ้าอยากกินไม่เผ็ด ลองเลือกดู:\n- ${choices.joinToString("\n- ")}"
+                            buildRecommendationReply(
+                                candidates = safeLightFoods,
+                                reason = "เพราะเป็นเมนูเบา ๆ และไม่เผ็ด"
+                            )
                         } else {
                             "ตอนนี้ยังไม่เจอเมนูไม่เผ็ดในรายการเลย ลองเพิ่มเมนูอย่าง ข้าวมันไก่ ไข่เจียว หรือโจ๊กได้นะ"
                         }
@@ -158,8 +167,10 @@ class AiFoodChatActivity : ComponentActivity() {
 
             containsAny(text, listOf("เผ็ด", "แซ่บ", "รสจัด")) -> {
                 if (spicyFoods.isNotEmpty()) {
-                    val choices = pickRandomChoices(spicyFoods, 3)
-                    "ถ้าอยากกินเผ็ด ๆ ลองเลือกดู:\n- ${choices.joinToString("\n- ")}"
+                    buildRecommendationReply(
+                        candidates = spicyFoods,
+                        reason = "เพราะเป็นเมนูรสจัดที่น่าจะตรงกับที่อยากกิน"
+                    )
                 } else {
                     "ตอนนี้ยังไม่เจอเมนูเผ็ดชัด ๆ ในรายการเลย"
                 }
@@ -167,8 +178,10 @@ class AiFoodChatActivity : ComponentActivity() {
 
             containsAny(text, listOf("เส้น", "ก๋วยเตี๋ยว", "ผัดซีอิ๊ว", "ราดหน้า", "บะหมี่", "noodle")) -> {
                 if (noodleFoods.isNotEmpty()) {
-                    val choices = pickRandomChoices(noodleFoods, 3)
-                    "ถ้าอยากกินเมนูเส้น ลองดูพวกนี้ไหม:\n- ${choices.joinToString("\n- ")}"
+                    buildRecommendationReply(
+                        candidates = noodleFoods,
+                        reason = "เพราะเป็นเมนูเส้นที่น่าจะตรงกับที่อยากกิน"
+                    )
                 } else {
                     "ตอนนี้ยังไม่เจอเมนูเส้นในรายการเลย"
                 }
@@ -177,42 +190,67 @@ class AiFoodChatActivity : ComponentActivity() {
             containsAny(text, listOf("คลีน", "ลดน้ำหนัก", "เฮลตี้", "สุขภาพ")) -> {
                 val safeHealthyFoods = (healthyFoods + lightFoods).distinct().filterNot { isSpicyFood(it) }
                 if (safeHealthyFoods.isNotEmpty()) {
-                    val choices = pickRandomChoices(safeHealthyFoods, 3)
-                    "ถ้าอยากกินแบบเฮลตี้ ลองดูพวกนี้ไหม:\n- ${choices.joinToString("\n- ")}"
+                    buildRecommendationReply(
+                        candidates = safeHealthyFoods,
+                        reason = "เพราะเป็นตัวเลือกที่ดูเบาและเฮลตี้กว่าเมนูอื่น"
+                    )
                 } else {
                     "ตอนนี้ยังไม่เจอเมนูเฮลตี้ชัด ๆ ในรายการเลย"
                 }
             }
 
             containsAny(text, listOf("ง่าย", "เร็ว", "รีบ", "ไม่คิดเยอะ")) -> {
-                val choices = pickRandomChoices(easyFoods.ifEmpty { foodNames }, 3)
-                "เอาเมนูง่าย ๆ ลองเลือกจากพวกนี้ได้เลย:\n- ${choices.joinToString("\n- ")}"
+                buildRecommendationReply(
+                    candidates = easyFoods.ifEmpty { foodNames },
+                    reason = "เพราะเป็นเมนูที่ตัดสินใจง่ายและหากินสะดวก"
+                )
             }
 
             containsAny(text, listOf("ของหวาน", "หวาน", "ขนม", "dessert")) -> {
                 if (sweetFoods.isNotEmpty()) {
-                    val choices = pickRandomChoices(sweetFoods, 3)
-                    "ถ้าอยากกินของหวาน ลองดูพวกนี้ไหม:\n- ${choices.joinToString("\n- ")}"
+                    buildRecommendationReply(
+                        candidates = sweetFoods,
+                        reason = "เพราะน่าจะตอบโจทย์เวลาที่อยากกินอะไรหวาน ๆ"
+                    )
                 } else {
                     "ตอนนี้ยังไม่เจอเมนูของหวานในรายการเลย"
                 }
             }
 
             containsAny(text, listOf("กินอะไร", "กินไร", "ไม่รู้", "อะไรดี", "สุ่มให้หน่อย")) -> {
-                val choices = pickRandomChoices(foodNames, 3)
-                "ลองเลือกดู:\n- ${choices.joinToString("\n- ")}"
+                buildRecommendationReply(
+                    candidates = foodNames,
+                    reason = "เพราะเป็นตัวเลือกที่เด่นจากเมนูที่คุณมีอยู่ตอนนี้"
+                )
             }
 
             else -> {
-                val choices = pickRandomChoices(foodNames, 3)
-                "จากเมนูที่คุณมี เราขอแนะนำ:\n- ${choices.joinToString("\n- ")}"
+                buildRecommendationReply(
+                    candidates = foodNames,
+                    reason = "เพราะดูเข้ากับเมนูที่คุณมีในตอนนี้"
+                )
             }
         }
     }
 
-    private fun pickRandomChoices(list: List<String>, count: Int): List<String> {
-        return if (list.size <= count) list.shuffled()
-        else list.shuffled().take(count)
+    private fun buildRecommendationReply(candidates: List<String>, reason: String): String {
+        if (candidates.isEmpty()) {
+            return "ตอนนี้ยังไม่มีเมนูที่ตรงเงื่อนไขเลย"
+        }
+
+        val shuffled = candidates.shuffled()
+        val mainChoice = shuffled.first()
+        val backupChoices = shuffled.drop(1).take(2)
+
+        return buildString {
+            append("เราแนะนำ $mainChoice เป็นตัวหลักนะ เพราะ$reason")
+            if (backupChoices.isNotEmpty()) {
+                append("\nเมนูสำรอง:")
+                backupChoices.forEach {
+                    append("\n- $it")
+                }
+            }
+        }
     }
 
     private fun containsAny(text: String, keywords: List<String>): Boolean {
@@ -233,7 +271,6 @@ class AiFoodChatActivity : ComponentActivity() {
 
     private fun isNonSpicyFood(name: String): Boolean {
         val text = name.lowercase()
-
         if (isSpicyFood(text)) return false
 
         return containsAny(
@@ -280,7 +317,6 @@ class AiFoodChatActivity : ComponentActivity() {
 
     private fun isLightFood(name: String): Boolean {
         val text = name.lowercase()
-
         if (isSpicyFood(text)) return false
 
         return containsAny(
