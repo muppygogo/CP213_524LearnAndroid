@@ -2,6 +2,7 @@ package com.example.randomapp
 
 import android.content.Context
 import android.graphics.Color
+import android.graphics.Typeface
 import android.graphics.drawable.GradientDrawable
 import android.view.Gravity
 import android.view.ViewGroup
@@ -16,9 +17,11 @@ class ChatMessageAdapter(
 
     inner class ChatViewHolder(val container: LinearLayout) : RecyclerView.ViewHolder(container) {
         val messageTextView: TextView = TextView(context).apply {
-            textSize = 16f
+            textSize = 15.5f
             setTextColor(Color.parseColor("#333333"))
-            setPadding(dp(14), dp(10), dp(14), dp(10))
+            typeface = Typeface.DEFAULT_BOLD
+            setLineSpacing(6f, 1f)
+            setPadding(dp(16), dp(12), dp(16), dp(12))
             layoutParams = LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
@@ -36,10 +39,10 @@ class ChatMessageAdapter(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
             ).apply {
-                bottomMargin = dp(10)
+                bottomMargin = dp(12)
             }
             orientation = LinearLayout.HORIZONTAL
-            setPadding(dp(4), dp(2), dp(4), dp(2))
+            setPadding(dp(6), dp(2), dp(6), dp(2))
         }
 
         return ChatViewHolder(rowLayout)
@@ -53,12 +56,20 @@ class ChatMessageAdapter(
         textView.text = message.text
 
         val bubbleDrawable = GradientDrawable().apply {
-            cornerRadius = dp(18).toFloat()
+            cornerRadius = dp(20).toFloat()
+            setStroke(
+                dp(1),
+                if (message.isUser) {
+                    Color.parseColor("#C9D8FF")
+                } else {
+                    Color.parseColor("#F0DDE7")
+                }
+            )
             setColor(
                 if (message.isUser) {
-                    Color.parseColor("#DDEBFF")
+                    Color.parseColor("#DCE7FF")
                 } else {
-                    Color.parseColor("#FFFFFF")
+                    Color.parseColor("#FFF8FB")
                 }
             )
         }
@@ -68,19 +79,19 @@ class ChatMessageAdapter(
         val textParams = LinearLayout.LayoutParams(
             ViewGroup.LayoutParams.WRAP_CONTENT,
             ViewGroup.LayoutParams.WRAP_CONTENT
-        ).apply {
-            width = ViewGroup.LayoutParams.WRAP_CONTENT
-        }
+        )
         textView.layoutParams = textParams
-        textView.maxWidth = dp(240)
+        textView.maxWidth = dp(250)
 
         row.gravity = if (message.isUser) Gravity.END else Gravity.START
 
-        if (message.isUser) {
-            textView.setTextColor(Color.parseColor("#1F2D3D"))
-        } else {
-            textView.setTextColor(Color.parseColor("#333333"))
-        }
+        textView.setTextColor(
+            if (message.isUser) {
+                Color.parseColor("#30425D")
+            } else {
+                Color.parseColor("#4A3440")
+            }
+        )
     }
 
     override fun getItemCount(): Int = messages.size

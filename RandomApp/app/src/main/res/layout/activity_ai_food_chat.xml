@@ -3,16 +3,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#F6ECF0"
+    android:background="#F7EAF0"
     android:padding="16dp">
 
     <Button
         android:id="@+id/btnBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:minWidth="0dp"
+        android:minHeight="0dp"
+        android:paddingStart="18dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="18dp"
+        android:paddingBottom="10dp"
         android:text="← กลับ"
         android:textAllCaps="false"
-        android:layout_marginBottom="12dp" />
+        android:textStyle="bold"
+        android:textColor="#6A5862"
+        android:backgroundTint="#EDE4E8"
+        android:layout_marginBottom="14dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -28,36 +37,43 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="#F8F5F7"
-        android:padding="8dp"
+        android:background="#F9F3F6"
+        android:padding="10dp"
         android:clipToPadding="false" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="12dp">
+        android:layout_marginTop="12dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
         <EditText
             android:id="@+id/editMessage"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="52dp"
             android:layout_weight="1"
+            android:backgroundTint="#E3A8BC"
             android:hint="พิมพ์ถาม AI..."
-            android:padding="12dp"
-            android:background="@android:drawable/edit_text"
             android:inputType="textMultiLine"
-            android:minLines="1"
+            android:imeOptions="actionSend"
             android:maxLines="4"
-            android:imeOptions="actionSend" />
+            android:minLines="1"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
+            android:textColor="#4A3942"
+            android:textColorHint="#A17F8E" />
 
         <Button
             android:id="@+id/btnSend"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_width="78dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="10dp"
+            android:backgroundTint="#E14D77"
             android:text="ส่ง"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
     </LinearLayout>
 
 </LinearLayout>

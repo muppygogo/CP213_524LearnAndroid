@@ -43,7 +43,9 @@ class AiFoodChatActivity : ComponentActivity() {
         recyclerChat = findViewById(R.id.recyclerChat)
 
         chatAdapter = ChatMessageAdapter(this, chatMessages)
-        recyclerChat.layoutManager = LinearLayoutManager(this)
+        recyclerChat.layoutManager = LinearLayoutManager(this).apply {
+            stackFromEnd = true
+        }
         recyclerChat.adapter = chatAdapter
 
         addMessage("สวัสดี เราช่วยแนะนำอาหารให้ได้นะ ลองพิมพ์มาว่าอยากกินแบบไหน", false)
@@ -74,15 +76,12 @@ class AiFoodChatActivity : ComponentActivity() {
         addMessage(userMsg, true)
         editMessage.setText("")
 
-        // บับเบิลชั่วคราว
         val typingIndex = addMessageAndReturnIndex("AI กำลังพิมพ์...", false)
 
-        // หน่วงนิดให้ดูเหมือนกำลังคิด
         delay(700)
 
         val reply = generateReplyFromDb(userMsg)
 
-        // แทนที่ข้อความเดิม
         chatMessages[typingIndex] = ChatMessage(reply, false)
         chatAdapter.notifyItemChanged(typingIndex)
 
