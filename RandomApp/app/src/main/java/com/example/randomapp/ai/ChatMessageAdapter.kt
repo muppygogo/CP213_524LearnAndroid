@@ -1,4 +1,4 @@
-package com.example.randomapp
+package com.example.randomapp.ai
 
 import android.content.Context
 import android.graphics.Color

@@ -1,4 +1,4 @@
-package com.example.randomapp
+package com.example.randomapp.ai
 
 data class ChatMessage(
     val text: String,

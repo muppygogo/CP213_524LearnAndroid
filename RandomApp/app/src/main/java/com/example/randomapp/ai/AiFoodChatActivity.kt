@@ -1,4 +1,4 @@
-package com.example.randomapp
+package com.example.randomapp.ai
 
 import android.os.Bundle
 import android.widget.Button
@@ -8,6 +8,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
+import com.example.randomapp.data.AppDatabase
+import com.example.randomapp.ai.ChatMessage
+import com.example.randomapp.ai.ChatMessageAdapter
+import com.example.randomapp.R
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

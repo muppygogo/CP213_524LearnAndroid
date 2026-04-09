@@ -55,6 +55,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.lifecycleScope
 import androidx.room.Room
+import com.example.randomapp.data.AppDatabase
 import com.example.randomapp.ui.theme.RandomAppTheme
 import kotlinx.coroutines.launch
 

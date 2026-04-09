@@ -63,7 +63,7 @@
             android:exported="false" />
 
         <activity
-            android:name=".AiFoodChatActivity"
+            android:name=".ai.AiFoodChatActivity"
             android:exported="false" />
     </application>
 

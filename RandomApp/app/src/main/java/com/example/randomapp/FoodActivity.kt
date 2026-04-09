@@ -14,6 +14,9 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.room.Room
+import com.example.randomapp.ai.AiFoodChatActivity
+import com.example.randomapp.data.AppDatabase
+import com.example.randomapp.data.FoodEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

@@ -1,10 +1,10 @@
-package com.example.randomapp
+package com.example.randomapp.data
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "numbers")
-data class NumberEntity(
+@Entity(tableName = "names")
+data class NameEntity(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
-    val value: Int
+    val name: String
 )

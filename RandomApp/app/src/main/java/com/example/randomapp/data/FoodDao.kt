@@ -1,17 +1,18 @@
-package com.example.randomapp
+package com.example.randomapp.data
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.example.randomapp.data.FoodEntity
 
 @Dao
 interface FoodDao {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.Companion.REPLACE)
     suspend fun insert(food: FoodEntity)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.Companion.REPLACE)
     suspend fun insertAll(foods: List<FoodEntity>)
 
     @Query("SELECT * FROM foods")
