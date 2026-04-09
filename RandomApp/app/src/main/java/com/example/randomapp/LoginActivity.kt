@@ -54,17 +54,26 @@ import androidx.compose.ui.unit.sp
 import com.example.randomapp.ui.theme.RandomAppTheme
 
 class LoginActivity : ComponentActivity() {
+
+    private lateinit var sessionManager: SessionManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        sessionManager = SessionManager(this)
+
+        // ถ้า login ค้างอยู่แล้ว ให้เข้า Main เลย
+        if (sessionManager.isLoggedIn()) {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+            return
+        }
 
         setContent {
             RandomAppTheme {
                 LoginScreen(
                     onLoginSuccess = { emailOrPhone ->
-                        val session = getSharedPreferences("session", MODE_PRIVATE)
-                        session.edit()
-                            .putString("loggedInEmail", emailOrPhone)
-                            .apply()
+                        sessionManager.setLogin(emailOrPhone)
 
                         Toast.makeText(this, "เข้าสู่ระบบสำเร็จ", Toast.LENGTH_SHORT).show()
 

@@ -51,17 +51,20 @@ import androidx.compose.ui.unit.sp
 import com.example.randomapp.ui.theme.RandomAppTheme
 
 class ProfileActivity : ComponentActivity() {
+
+    private lateinit var sessionManager: SessionManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val session = getSharedPreferences("session", MODE_PRIVATE)
+        sessionManager = SessionManager(this)
+
         val settings = getSharedPreferences("app_settings", MODE_PRIVATE)
         val darkMode = settings.getBoolean("dark_mode_enabled", false)
 
-        val savedName = session.getString("userName", null)
-        val rawEmail = session.getString("loggedInEmail", "andy@gmail.com") ?: "andy@gmail.com"
+        val rawEmail = sessionManager.getUsername() ?: "andy@gmail.com"
 
-        val displayName = savedName ?: rawEmail
+        val displayName = rawEmail
             .substringBefore("@")
             .replaceFirstChar { if (it.isLowerCase()) it.titlecase() else it.toString() }
 
@@ -100,7 +103,7 @@ class ProfileActivity : ComponentActivity() {
                         startActivity(Intent(this, HistoryActivity::class.java))
                     },
                     onLogoutClick = {
-                        session.edit().clear().apply()
+                        sessionManager.logout()
 
                         val intent = Intent(this, WelcomeActivity::class.java).apply {
                             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

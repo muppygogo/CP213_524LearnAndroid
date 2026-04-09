@@ -34,8 +34,20 @@ import androidx.compose.ui.unit.sp
 import com.example.randomapp.ui.theme.RandomAppTheme
 
 class WelcomeActivity : ComponentActivity() {
+
+    private lateinit var sessionManager: SessionManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        sessionManager = SessionManager(this)
+
+        // ถ้า login อยู่แล้ว ให้ข้ามหน้า Welcome ไปหน้า Main เลย
+        if (sessionManager.isLoggedIn()) {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+            return
+        }
 
         setContent {
             RandomAppTheme {
