@@ -2,96 +2,55 @@ package com.example.randomapp.ai
 
 import android.content.Context
 import android.graphics.Color
-import android.graphics.Typeface
-import android.graphics.drawable.GradientDrawable
-import android.view.Gravity
+import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.randomapp.R
 
 class ChatMessageAdapter(
     private val context: Context,
-    private val messages: MutableList<ChatMessage>
+    private val messages: MutableList<ChatMessage>,
+    private val isDarkMode: Boolean
 ) : RecyclerView.Adapter<ChatMessageAdapter.ChatViewHolder>() {
 
-    inner class ChatViewHolder(val container: LinearLayout) : RecyclerView.ViewHolder(container) {
-        val messageTextView: TextView = TextView(context).apply {
-            textSize = 15.5f
-            setTextColor(Color.parseColor("#333333"))
-            typeface = Typeface.DEFAULT_BOLD
-            setLineSpacing(6f, 1f)
-            setPadding(dp(16), dp(12), dp(16), dp(12))
-            layoutParams = LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-            )
-        }
-
-        init {
-            container.addView(messageTextView)
-        }
+    class ChatViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val tvUserMessage: TextView = itemView.findViewById(R.id.tvUserMessage)
+        val tvAiMessage: TextView = itemView.findViewById(R.id.tvAiMessage)
+        val cardUserMessage: CardView = itemView.findViewById(R.id.cardUserMessage)
+        val cardAiMessage: CardView = itemView.findViewById(R.id.cardAiMessage)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatViewHolder {
-        val rowLayout = LinearLayout(context).apply {
-            layoutParams = RecyclerView.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-            ).apply {
-                bottomMargin = dp(12)
-            }
-            orientation = LinearLayout.HORIZONTAL
-            setPadding(dp(6), dp(2), dp(6), dp(2))
-        }
-
-        return ChatViewHolder(rowLayout)
+        val view = LayoutInflater.from(context).inflate(R.layout.item_chat_message, parent, false)
+        return ChatViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ChatViewHolder, position: Int) {
         val message = messages[position]
-        val row = holder.container
-        val textView = holder.messageTextView
 
-        textView.text = message.text
+        if (message.isUser) {
+            holder.cardUserMessage.visibility = View.VISIBLE
+            holder.cardAiMessage.visibility = View.GONE
+            holder.tvUserMessage.text = message.text
 
-        val bubbleDrawable = GradientDrawable().apply {
-            cornerRadius = dp(20).toFloat()
-            setStroke(
-                dp(1),
-                if (message.isUser) {
-                    Color.parseColor("#C9D8FF")
-                } else {
-                    Color.parseColor("#F0DDE7")
-                }
-            )
-            setColor(
-                if (message.isUser) {
-                    Color.parseColor("#DCE7FF")
-                } else {
-                    Color.parseColor("#FFF8FB")
-                }
-            )
-        }
+            holder.cardUserMessage.setCardBackgroundColor(Color.parseColor("#E85C87"))
+            holder.tvUserMessage.setTextColor(Color.WHITE)
+        } else {
+            holder.cardUserMessage.visibility = View.GONE
+            holder.cardAiMessage.visibility = View.VISIBLE
+            holder.tvAiMessage.text = message.text
 
-        textView.background = bubbleDrawable
-
-        val textParams = LinearLayout.LayoutParams(
-            ViewGroup.LayoutParams.WRAP_CONTENT,
-            ViewGroup.LayoutParams.WRAP_CONTENT
-        )
-        textView.layoutParams = textParams
-        textView.maxWidth = dp(250)
-
-        row.gravity = if (message.isUser) Gravity.END else Gravity.START
-
-        textView.setTextColor(
-            if (message.isUser) {
-                Color.parseColor("#30425D")
+            if (isDarkMode) {
+                holder.cardAiMessage.setCardBackgroundColor(Color.parseColor("#3A3342"))
+                holder.tvAiMessage.setTextColor(Color.parseColor("#F6EAF0"))
             } else {
-                Color.parseColor("#4A3440")
+                holder.cardAiMessage.setCardBackgroundColor(Color.parseColor("#FFFFFF"))
+                holder.tvAiMessage.setTextColor(Color.parseColor("#44333F"))
             }
-        )
+        }
     }
 
     override fun getItemCount(): Int = messages.size
@@ -99,9 +58,5 @@ class ChatMessageAdapter(
     fun addMessage(message: ChatMessage) {
         messages.add(message)
         notifyItemInserted(messages.lastIndex)
-    }
-
-    private fun dp(value: Int): Int {
-        return (value * context.resources.displayMetrics.density).toInt()
     }
 }

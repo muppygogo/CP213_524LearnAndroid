@@ -8,10 +8,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
-import com.example.randomapp.data.AppDatabase
-import com.example.randomapp.ai.ChatMessage
-import com.example.randomapp.ai.ChatMessageAdapter
 import com.example.randomapp.R
+import com.example.randomapp.data.AppDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -31,6 +29,14 @@ class AiFoodChatActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val settings = getSharedPreferences("app_settings", MODE_PRIVATE)
+        val darkMode = settings.getBoolean("dark_mode_enabled", false)
+
+        if (darkMode) {
+            setTheme(R.style.Theme_RandomApp)
+        }
+
         setContentView(R.layout.activity_ai_food_chat)
 
         db = Room.databaseBuilder(
@@ -46,11 +52,18 @@ class AiFoodChatActivity : ComponentActivity() {
         btnSend = findViewById(R.id.btnSend)
         recyclerChat = findViewById(R.id.recyclerChat)
 
-        chatAdapter = ChatMessageAdapter(this, chatMessages)
+        chatAdapter = ChatMessageAdapter(
+            context = this,
+            messages = chatMessages,
+            isDarkMode = darkMode
+        )
+
         recyclerChat.layoutManager = LinearLayoutManager(this).apply {
             stackFromEnd = true
         }
         recyclerChat.adapter = chatAdapter
+
+        applyDarkModeToViews(darkMode)
 
         addMessage("สวัสดี เราช่วยแนะนำอาหารให้ได้นะ ลองพิมพ์มาว่าอยากกินแบบไหน", false)
 
@@ -69,6 +82,38 @@ class AiFoodChatActivity : ComponentActivity() {
                 sendMessage()
             }
             true
+        }
+    }
+
+    private fun applyDarkModeToViews(isDarkMode: Boolean) {
+        val rootView = findViewById<android.view.View>(android.R.id.content)
+
+        if (isDarkMode) {
+            rootView.setBackgroundColor(android.graphics.Color.parseColor("#1E1B22"))
+
+            recyclerChat.setBackgroundColor(android.graphics.Color.parseColor("#2B2530"))
+            editMessage.setBackgroundColor(android.graphics.Color.parseColor("#362F3D"))
+            editMessage.setTextColor(android.graphics.Color.parseColor("#F6EAF0"))
+            editMessage.setHintTextColor(android.graphics.Color.parseColor("#C7B4BE"))
+
+            btnSend.setBackgroundColor(android.graphics.Color.parseColor("#E85C87"))
+            btnSend.setTextColor(android.graphics.Color.WHITE)
+
+            btnBack.setBackgroundColor(android.graphics.Color.parseColor("#4A3141"))
+            btnBack.setTextColor(android.graphics.Color.WHITE)
+        } else {
+            rootView.setBackgroundColor(android.graphics.Color.parseColor("#F1DCE4"))
+
+            recyclerChat.setBackgroundColor(android.graphics.Color.parseColor("#F0D7E0"))
+            editMessage.setBackgroundColor(android.graphics.Color.WHITE)
+            editMessage.setTextColor(android.graphics.Color.parseColor("#44333F"))
+            editMessage.setHintTextColor(android.graphics.Color.parseColor("#A68A97"))
+
+            btnSend.setBackgroundColor(android.graphics.Color.parseColor("#E85C87"))
+            btnSend.setTextColor(android.graphics.Color.WHITE)
+
+            btnBack.setBackgroundColor(android.graphics.Color.parseColor("#F7E9EE"))
+            btnBack.setTextColor(android.graphics.Color.parseColor("#E85C87"))
         }
     }
 
