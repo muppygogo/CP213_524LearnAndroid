@@ -159,3 +159,6 @@ Technology ที่ใช้ในการพัฒนา
 ## Mockup UI
 
 ![Random App UI](assets/mockup.png)
+
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/b11aae7b-5122-4869-b2a4-ebeb5c30d77d" />
+
